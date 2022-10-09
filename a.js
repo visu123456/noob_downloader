@@ -1,8 +1,21 @@
 function vi()
 {	
 	
+  try {
+    const response = await axios.get(`${BASE_URL}/todos?_limit=5`);
+
+    const todoItems = response.data;
+
+    console.log(`GET: Here's the list of todos`, todoItems);
+
+    return todoItems;
+  } catch (errors) {
+    console.error(errors);
+  }
+};
 	
 	URLL=document.getElementById("li").value;
+	
 	if(URLL=="" || URLL[8]!='y')
 	{
 		alert("PLEASE CHECK URL");
@@ -11,6 +24,15 @@ function vi()
 		url="https://api.onlinevideoconverter.pro/api/convert"
     child_url={"url":URLL}
     var x=JSON.stringify(child_url);
+		axios.get(path).then(
+        (response) => {
+            var result = response.data;
+            console.log(result);
+        },
+        (error) => {
+            console.log(error);
+        }
+    );
     params={
     	method:'post',
     	headers:
